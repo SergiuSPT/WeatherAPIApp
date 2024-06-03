@@ -1,3 +1,11 @@
-body {
-    background-color: gradient(blue, yellow);
+#location {
+    width: 50%;
+}
+#days {
+    width: 20%;
+}
+
+body > div {
+    border-radius: 10%;
+    background-color: aqua;
 }
