@@ -4,14 +4,41 @@ import bodyParser from "body-parser";
 
 const app = express();
 const port = 3000;
-const API_URL = "http://api.weatherapi.com/v1";
+const API_URL = "http://api.weatherapi.com/v1/forecast.json";
 const key = "5f857c804e30492a873103739243005";
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
-
+let h1var;
 app.get("/", (req, res) => {
-    res.render("index.ejs");
+    h1var = "Insert the city you want to see the weather for and for how many days...";
+    res.render("index.ejs", {
+        h1: h1var,
+    });
+});
+
+app.post("/submit", async (req, res) => {
+    try{
+        h1var = "Here is your forecast";
+        let location = req.body["location"];
+        let days = req.body["days"];
+        
+        const response = await axios.get(API_URL + `?key=${key}&q=${location}&days=${days}`);
+        let result = response.data;
+        console.log(result);
+        res.render("index.ejs", {
+            h1: h1var,
+            location: location,
+            days: days,
+            weather: result,
+        });
+    }catch(error){
+        console.error("Failed to make request:", error.message);
+        res.render("index.ejs",{
+            error:"No activities that match your criteria.",
+        });
+    }
+    res.redirect("/");
 });
 
 app.listen(port, () => {
