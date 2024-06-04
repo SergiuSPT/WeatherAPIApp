@@ -38,7 +38,7 @@ app.post("/submit", async (req, res) => {
             error:"No activities that match your criteria.",
         });
     }
-    res.redirect("/");
+    
 });
 
 app.listen(port, () => {
