@@ -1,15 +1,21 @@
 #location {
-    width: 50%;
+    width: 20%;
 }
 #days {
     width: 20%;
 }
 body {
-    height:95vh;
-    background: linear-gradient(aqua,yellow);
+    height:150vh;
+    background: linear-gradient(aqua,black);
     background-repeat:no-repeat;
 }
-body > div {
-    border-radius: 10%;
-    background-color: aqua;
+.container > form {
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.detailsBox {
+    display: inline-block;
+    background-color: white;
+    border-radius: 10px;
 }
